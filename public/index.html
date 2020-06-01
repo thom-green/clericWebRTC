@@ -30,13 +30,7 @@
             </div>
         </nav>
         <div class="container-fluid main">
-            <div class="col-sm-12">
-                <div id="selectRoom">
-                    <label>Enter room number</label>
-                    <input id="roomNumber" type="text" />
-                    <button class="btn btnCleric" id="goRoom">Join</button>
-                </div>
-            
+            <div class="col-sm-12">            
                 <div class="col-sm-12" id="consultingRoom" style="display:none">
                     <video class="col-sm-6" id="localVideo" autoplay></video>
                     <video class="col-sm-6" id="remoteVideo" autoplay></video>
@@ -50,6 +44,30 @@
         </div>
         <!-- Footer end -->
 
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="selectRoom">
+                    <label>Enter room number</label>
+                    <br>
+                    <input id="roomNumber" type="text" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cleric" id="goRoom" data-dismiss="modal">Join</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
+    <script>
+        $(window).on('load',function(){
+        $('#exampleModal').modal('show');
+    });
+    </script>
+
 </body>
