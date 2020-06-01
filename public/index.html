@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <head>
-    <title>WebRTC Video Conference Tutorial - Plain WebRTC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="imgs/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/5ac3be84e8.js"></script>
+    <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <title>Cleric WebRTC POC</title>
 </head>
 <body>
-    <h1>WebRTC Video Conference Tutorial - Plain WebRTC</h1>
-
-    <div id="selectRoom">
-        <label>Type the room number</label>
-        <input id="roomNumber" type="text" />
-        <button id="goRoom">Go</button>
-    </div>
-
-    <div id="consultingRoom" style="display:none">
-        <video id="localVideo" autoplay></video>
-        <video id="remoteVideo" autoplay></video>
-    </div>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header"><a class="navbar-brand"><img class="logo" src="imgs/logo_white.png"
+                            alt="cleric_logo"><span class="title"></span>Cleric WebRTC POC</a><button class="navbar-toggler" type="button"
+                        data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="fas fa-bars"
+                                aria-hidden="true"></i></span></button></div>
+            </div>
+        </nav>
+        <div class="container-fluid main">
+            <div class="col-sm-12">
+                <div id="selectRoom">
+                    <label>Enter room number</label>
+                    <input id="roomNumber" type="text" />
+                    <button class="btn btnCleric" id="goRoom">Join</button>
+                </div>
+            
+                <div class="col-sm-12" id="consultingRoom" style="display:none">
+                    <video class="col-sm-6" id="localVideo" autoplay></video>
+                    <video class="col-sm-6" id="remoteVideo" autoplay></video>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="container-fluid">
+            <footer><sup id="footer">Cleric 2020</sup>
+            </footer>
+        </div>
+        <!-- Footer end -->
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
