@@ -7,7 +7,7 @@ body {
 }
 
 a {
-  color: #e91e63;
+  color: #F652FE;
 }
 
 span.title {
@@ -45,7 +45,7 @@ a:hover {
 }
 
 .text-primary {
-  color: #e91e63;
+  color: #F652FE;
   margin-right: 45%;
 }
 
@@ -76,7 +76,7 @@ a:hover {
 }
 
 .btn-cleric {
-  background-color: #e91e63;
+  background-color: #F652FE;
   color: white;
   margin: 0 3px 0 3px;
 }
@@ -140,7 +140,7 @@ a:hover {
 }
 
 #\30 {
-  background: #e91e63;
+  background: #F652FE;
 }
 
 #\30>.cLogo {
@@ -207,7 +207,7 @@ footer {
 
 .navbar.navbar-dark {
   color: #ffffff;
-  background-color: #e91e63;
+  background-color: #F652FE;
   padding-left: 20px;
   box-shadow: 0 0 1em #CCCCCC;
 }
@@ -370,7 +370,7 @@ i.far.fa-paper-plane {
 }
 
 .radioContainer input:checked~.checkmark {
-  background-color: #e91e63;
+  background-color: #F652FE;
 }
 
 .checkmark:after {
@@ -427,7 +427,7 @@ label {
 span.cTimeBtn {
   width: 100%;
   height: 100%;
-  background-color: #e91e63;
+  background-color: #F652FE;
   padding: 7px;
   margin: 0 auto;
   color: white;
@@ -496,7 +496,7 @@ video {
 
 #remoteUserName {
   text-align: center;
-  background-color: #e91e63;
+  background-color: #F652FE;
   color: #ffffff;
   position: absolute;
   top: 6%;
@@ -521,6 +521,14 @@ video {
 
 #localVideo {
   float: right;
+}
+
+.btmLogo {
+    height: 75px;
+    bottom: 6px;
+    position: absolute;
+    padding: 1rem;
+    margin: 1rem;
 }
 
 @media only screen and (max-width: 1200px) {
