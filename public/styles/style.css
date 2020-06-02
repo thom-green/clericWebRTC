@@ -523,6 +523,25 @@ video {
   float: right;
 }
 
+#localUserName {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  width: 320px;
+  text-align: center;
+  text-align: center;
+  background-color: #e91e63;
+  color: #ffffff;
+  position: absolute;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.25);
+  opacity: 0.5;
+}
+
 .btmLogo {
   height: 75px;
   bottom: 6px;

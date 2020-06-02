@@ -22,9 +22,7 @@ var iceServers = {
 var streamConstraints = { audio: true, video: true };
 var isCaller;
 
-// Let's do this
 var socket = io();
-
 btnGoRoom.onclick = function () {
     if (inputRoomNumber.value === '') {
         alert("Please type a room number")
@@ -34,6 +32,7 @@ btnGoRoom.onclick = function () {
         socket.emit('create or join', roomNumber);
         divSelectRoom.style = "display: none;";
         divConsultingRoom.style = "display: block;";
+        $("#localUserName").text(displayName);
     }
 };
 
