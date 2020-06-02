@@ -34,7 +34,7 @@
                     <span class="row flex-container">
                         <h3 id="remoteUserName">. . .</h3>
                     </span>
-                        <video  id="remoteVideo" autoplay></video>
+                        <video  class="loading" id="remoteVideo" autoplay></video>
                 </div>
 
                 <div class="col-md-6 col-sm-12 userVideo">
@@ -53,14 +53,17 @@
                         </ul>
                     </span> -->
                     <video id="localVideo" autoplay></video>
-                    <span id="localUserName">. . .</span>
+                    <div class="novideoContainer flex-container">
+                        <i class="noVideo fas fa-video-slash"></i>
+                    </div>
+                    <span id="localUserName" class="loading"></span>
                 </div>
         </div>
         <!-- Footer -->
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
             <footer><sup id="footer">Cleric 2020</sup>
             </footer>
-        </div>
+        </div> -->
         <!-- Footer end -->
 
         <!-- Modal -->

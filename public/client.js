@@ -34,6 +34,9 @@ btnGoRoom.onclick = function () {
         divConsultingRoom.style = "display: block;";
         $("#localUserName").text(displayName);
     }
+    $(".novideoContainer").hide();
+    $("#localUserName").removeClass("loading");
+    console.log('Ready!');
 };
 
 // message handlers

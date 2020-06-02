@@ -514,13 +514,30 @@ video {
     float: right;
     position: absolute;
     right: 0;
-    bottom: 54px;
+    bottom: 0;
     width: 100%;
     padding: 0;
 }
 
+.novideoContainer {
+    min-height: 240.5px;
+    max-width: 100%;
+    width: 320px;
+    right: 0;
+    position: absolute;
+}
+
+.noVideo {
+    font-size: 100px;
+    padding: 1rem;
+    height: 100%;
+    margin-top: 12.5%;
+}
+
 #localVideo {
   float: right;
+  border: 1px solid lightgray;
+  min-height: 240.5px;
 }
 
 #localUserName {
@@ -550,6 +567,32 @@ video {
   margin: 1rem;
   background: #e91e63;
   border-radius: 50%;
+}
+
+.loading {
+  font-size: 30px;
+}
+
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+  animation: ellipsis steps(4,end) 900ms infinite;
+  content: "\2026"; 
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
 }
 
 @media only screen and (max-width: 1200px) {
