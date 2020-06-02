@@ -494,6 +494,22 @@ video {
   height: 100%;
 }
 
+#remoteUserName {
+  text-align: center;
+  background-color: #e91e63;
+  color: #ffffff;
+  position: absolute;
+  top: 6%;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  border-radius: 1rem;
+  width: 500px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.25);
+  opacity: 0.5;
+}
+
 .userVideo {
     float: right;
     position: absolute;
