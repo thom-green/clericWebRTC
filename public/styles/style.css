@@ -486,6 +486,7 @@ video {
 #consultingRoom {
   height: 100vh;
   background: black;
+  padding: 0;
 }
 
 #remoteVideo {
