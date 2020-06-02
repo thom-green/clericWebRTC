@@ -126,7 +126,8 @@ function onIceCandidate(event) {
             id: event.candidate.sdpMid,
             candidate: event.candidate.candidate,
             room: roomNumber
-        })
+        }),
+        console.log(event);
     }
     $("#remoteUserName").show();
 }
