@@ -129,7 +129,7 @@ function onIceCandidate(event) {
             room: roomNumber,
             displayName: displayName
         }),
-        console.log(event);
+        console.log(event.stream);
     }
     $("#remoteUserName").show();
 }
