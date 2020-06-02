@@ -15,7 +15,6 @@ var remoteStream;
 var rtcPeerConnection;
 var iceServers = {
     'iceServers': [
-        { 'urls': 'stun:stun.services.mozilla.com' },
         { 'urls': 'stun:stun.l.google.com:19302' }
     ]
 }
@@ -62,7 +61,8 @@ socket.on('joined', function (room) {
 socket.on('candidate', function (event) {
     var candidate = new RTCIceCandidate({
         sdpMLineIndex: event.label,
-        candidate: event.candidate
+        candidate: event.candidate,
+        displayName: '123!'
     });
     rtcPeerConnection.addIceCandidate(candidate);
 });
