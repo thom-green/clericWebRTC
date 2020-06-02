@@ -36,7 +36,6 @@ btnGoRoom.onclick = function () {
     }
     $(".novideoContainer").hide();
     $("#localUserName").removeClass("loading");
-    console.log('Ready!');
 };
 
 // message handlers
@@ -129,6 +128,7 @@ function onIceCandidate(event) {
             room: roomNumber
         })
     }
+    $("#remoteUserName").show();
 }
 
 function onAddStream(event) {
