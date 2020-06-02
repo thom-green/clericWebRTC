@@ -61,8 +61,7 @@ socket.on('joined', function (room) {
 socket.on('candidate', function (event) {
     var candidate = new RTCIceCandidate({
         sdpMLineIndex: event.label,
-        candidate: event.candidate,
-        displayName: '123!'
+        candidate: event.candidate
     });
     rtcPeerConnection.addIceCandidate(candidate);
 });
@@ -80,7 +79,8 @@ socket.on('ready', function () {
                 socket.emit('offer', {
                     type: 'offer',
                     sdp: sessionDescription,
-                    room: roomNumber
+                    room: roomNumber,
+                    displayName: displayName
                 });
             })
             .catch(error => {
@@ -103,7 +103,8 @@ socket.on('offer', function (event) {
                 socket.emit('answer', {
                     type: 'answer',
                     sdp: sessionDescription,
-                    room: roomNumber
+                    room: roomNumber,
+                    displayName: displayName
                 });
             })
             .catch(error => {
@@ -125,7 +126,8 @@ function onIceCandidate(event) {
             label: event.candidate.sdpMLineIndex,
             id: event.candidate.sdpMid,
             candidate: event.candidate.candidate,
-            room: roomNumber
+            room: roomNumber,
+            displayName: displayName
         }),
         console.log(event);
     }

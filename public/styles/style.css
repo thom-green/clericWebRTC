@@ -539,6 +539,7 @@ video {
   float: right;
   border: 1px solid lightgray;
   min-height: 240.5px;
+  background-color: black;
 }
 
 #localUserName {
