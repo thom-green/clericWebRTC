@@ -29,13 +29,27 @@
                                 aria-hidden="true"></i></span></button></div>
             </div>
         </nav>
-        <div class="container-fluid main">
-            <div class="col-sm-12">            
-                <div class="col-sm-12" id="consultingRoom" style="display:none">
-                    <video class="col-md-6 col-sm-12" id="localVideo" autoplay></video>
-                    <video class="col-md-6 col-sm-12" id="remoteVideo" autoplay></video>
+        <div class="container-fluid main">          
+                <div class="col-sm-12 flex-container" id="consultingRoom" style="display:none">
+                        <video  id="remoteVideo" autoplay></video>
                 </div>
-            </div>
+
+                <div class="col-md-6 col-sm-12 userVideo">
+                    <!-- <span class="flex-container">
+                        <ul>
+                            <li>
+                                <i class="fas fa-microphone-slash"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-video-slash"></i>
+                            </li>
+                            <li>
+                                <i class="far fa-times-circle"></i>
+                            </li>
+                        </ul>
+                    </span> -->
+                    <video id="localVideo" autoplay></video>
+                </div>
         </div>
         <!-- Footer -->
         <div class="container-fluid">
@@ -53,6 +67,11 @@
                     <label>Enter room number</label>
                     <br>
                     <input id="roomNumber" type="text" />
+                </div>
+                <div id="selectRoom">
+                    <label>Display name</label>
+                    <br>
+                    <input id="displayName" type="text" />
                 </div>
             </div>
             <div class="modal-footer">

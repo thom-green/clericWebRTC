@@ -2,12 +2,14 @@
 var divSelectRoom = document.getElementById("selectRoom");
 var divConsultingRoom = document.getElementById("consultingRoom");
 var inputRoomNumber = document.getElementById("roomNumber");
+var inputDisplayName = document.getElementById("displayName");
 var btnGoRoom = document.getElementById("goRoom");
 var localVideo = document.getElementById("localVideo");
 var remoteVideo = document.getElementById("remoteVideo");
 
 // variables
 var roomNumber;
+var displayName;
 var localStream;
 var remoteStream;
 var rtcPeerConnection;
@@ -28,6 +30,7 @@ btnGoRoom.onclick = function () {
         alert("Please type a room number")
     } else {
         roomNumber = inputRoomNumber.value;
+        displayName = inputDisplayName.value;
         socket.emit('create or join', roomNumber);
         divSelectRoom.style = "display: none;";
         divConsultingRoom.style = "display: block;";

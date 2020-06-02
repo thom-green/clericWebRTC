@@ -71,8 +71,8 @@ a:hover {
 }
 
 .container-fluid.main {
-  margin-top: 7.50vh;
-  margin-bottom: 20vh;
+  /* margin-top: 7.50vh;
+  margin-bottom: 20vh; */
 }
 
 .btn-cleric {
@@ -469,6 +469,41 @@ button.navbar-toggler {
 video {
   max-width: 100%;
   width: 320px;
+}
+
+.video {
+    padding: 1rem;
+    min-height: 450px;
+    min-height: 450px;
+    max-height: 450px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+#consultingRoom {
+  height: 100vh;
+  background: black;
+}
+
+#remoteVideo {
+  width: 100%;
+  height: 100%;
+}
+
+.userVideo {
+    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 54px;
+    width: 100%;
+    padding: 0;
+}
+
+#localVideo {
+  float: right;
 }
 
 @media only screen and (max-width: 1200px) {
