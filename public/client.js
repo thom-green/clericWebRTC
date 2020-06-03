@@ -37,7 +37,7 @@ function toggleVideo() {
     if(localStream != null && localStream.getAudioTracks().length > 0){
         micActive = !micActive;
   
-      localStream.getAudioTracks()[0].enabled = videoActive;
+      localStream.getAudioTracks()[0].enabled = micActive;
     }   
 }
 
