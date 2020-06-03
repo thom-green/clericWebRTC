@@ -72,7 +72,6 @@ btnGoRoom.onclick = function () {
     }
     $(".novideoContainer").hide();
     $("#localUserName").removeClass("loading");
-    setInterval(logCallDuration, 1000);
 };
 
 // message handlers
@@ -172,7 +171,7 @@ function onIceCandidate(event) {
         })
     }
     $("#remoteUserName").show();
-    console.log(event);
+    setInterval(logCallDuration, 1000);
 }
 
 function onAddStream(event) {

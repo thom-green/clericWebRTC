@@ -586,16 +586,15 @@ video {
 }
 
 .controlSet {
-    height: 75px;
-    bottom: 60px;
-    position: absolute;
-    padding: 0 auto;
-    margin: 1rem;
-    background: #e91e63;
-    width: 25%;
-    margin-left: 37.5%;
-    margin-right: 37.5%;
-    color: white;
+  height: 75px;
+  bottom: 0;
+  position: absolute;
+  margin: 1rem;
+  background: #e91e63;
+  width: 475.75px;
+  margin-left: 37.5%;
+  margin-right: 37.5%;
+  color: white;
 }
 
 .controlSet i {
