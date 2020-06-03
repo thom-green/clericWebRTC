@@ -102,7 +102,7 @@ socket.on('offer', function (event) {
         rtcPeerConnection.ontrack = onAddStream;
         rtcPeerConnection.addTrack(localStream.getTracks()[0], localStream);
         rtcPeerConnection.addTrack(localStream.getTracks()[1], localStream);
-        rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
+        rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event), displayName);
         rtcPeerConnection.createAnswer()
             .then(sessionDescription => {
                 rtcPeerConnection.setLocalDescription(sessionDescription);
@@ -137,7 +137,7 @@ function onIceCandidate(event) {
         })
     }
     $("#remoteUserName").show();
-    console.log(event);
+    console.log(event.target.remoteDescription);
 }
 
 function onAddStream(event) {
