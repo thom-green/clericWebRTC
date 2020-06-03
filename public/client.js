@@ -123,8 +123,6 @@ socket.on('answer', function (event) {
     rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
 });
 
-console.log(socket.username);
-
 // handler functions
 function onIceCandidate(event) {
     if (event.candidate) {
