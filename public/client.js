@@ -171,10 +171,10 @@ function onIceCandidate(event) {
         })
     }
     $("#remoteUserName").show();
-    setInterval(logCallDuration, 1000);
 }
 
 function onAddStream(event) {
     remoteVideo.srcObject = event.streams[0];
     remoteStream = event.stream;
+    setInterval(logCallDuration, 1000);
 }
