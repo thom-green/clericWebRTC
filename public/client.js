@@ -85,8 +85,7 @@ socket.on('ready', function () {
                 socket.emit('offer', {
                     type: 'offer',
                     sdp: sessionDescription,
-                    room: roomNumber,
-                    displayName: displayName
+                    room: roomNumber
                 });
             })
             .catch(error => {
@@ -109,8 +108,7 @@ socket.on('offer', function (event) {
                 socket.emit('answer', {
                     type: 'answer',
                     sdp: sessionDescription,
-                    room: roomNumber,
-                    displayName: displayName
+                    room: roomNumber
                 });
             })
             .catch(error => {
@@ -132,12 +130,11 @@ function onIceCandidate(event) {
             label: event.candidate.sdpMLineIndex,
             id: event.candidate.sdpMid,
             candidate: event.candidate.candidate,
-            room: roomNumber,
-            displayName: displayName
+            room: roomNumber
         })
     }
     $("#remoteUserName").show();
-    console.log(event.target.remoteDescription);
+    console.log(event);
 }
 
 function onAddStream(event) {
