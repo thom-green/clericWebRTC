@@ -176,5 +176,5 @@ function onIceCandidate(event) {
 function onAddStream(event) {
     remoteVideo.srcObject = event.streams[0];
     remoteStream = event.stream;
-    setInterval(logCallDuration, 1000);
+    setInterval(logCallDuration, 500);
 }
