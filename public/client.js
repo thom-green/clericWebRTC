@@ -49,13 +49,19 @@ socket.on('created', function (room) {
 });
 
 socket.on('joined', function (room) {
+    socket.username = displayName;
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         localStream = stream;
         localVideo.srcObject = stream;
-        socket.emit('ready', roomNumber);
+        socket.emit(
+            'ready', 
+            roomNumber,
+            socket.username
+        );
     }).catch(function (err) {
         console.log('An error ocurred when accessing media devices', err);
     });
+    console.log(socket.username);
 });
 
 socket.on('candidate', function (event) {
@@ -128,8 +134,7 @@ function onIceCandidate(event) {
             candidate: event.candidate.candidate,
             room: roomNumber,
             displayName: displayName
-        }),
-        console.log(event.streams[0]);
+        })
     }
     $("#remoteUserName").show();
 }
