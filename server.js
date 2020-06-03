@@ -19,7 +19,6 @@ io.on('connection', function (socket) {
         
         var myRoom = io.sockets.adapter.rooms[room] || { length: 0 };
         var numClients = myRoom.length;
-
         console.log(room, ' has ', numClients, ' clients');
 
         if (numClients == 0) {
