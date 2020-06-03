@@ -102,7 +102,7 @@ socket.on('offer', function (event) {
         rtcPeerConnection.ontrack = onAddStream;
         rtcPeerConnection.addTrack(localStream.getTracks()[0], localStream);
         rtcPeerConnection.addTrack(localStream.getTracks()[1], localStream);
-        rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event), displayName);
+        rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
         rtcPeerConnection.createAnswer()
             .then(sessionDescription => {
                 rtcPeerConnection.setLocalDescription(sessionDescription);
