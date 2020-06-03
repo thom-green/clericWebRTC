@@ -121,7 +121,9 @@ socket.on('offer', function (event) {
 
 socket.on('answer', function (event) {
     rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
-})
+});
+
+console.log(socket.username);
 
 // handler functions
 function onIceCandidate(event) {
@@ -137,6 +139,7 @@ function onIceCandidate(event) {
         })
     }
     $("#remoteUserName").show();
+    console.log(event);
 }
 
 function onAddStream(event) {
