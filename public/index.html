@@ -92,17 +92,13 @@
 
 
     $('#mic').click(function() {
-        $(this).toggleClass("fa-microphone fa-microphone-slash")
-        if($(this).hasClass("fa-microphone-slash")){
-            console.log('Mic disabled');
-        }
+        $(this).toggleClass("fa-microphone fa-microphone-slash");
+        toggleMic();
     });
 
     $('#video').click(function() {
-        $(this).toggleClass("fa-video fa-video-slash")
-        if($(this).hasClass("fa-video-slash")){
-            console.log('Video disabled');
-        }
+        $(this).toggleClass("fa-video fa-video-slash");
+        toggleVideo();
     });
 
     </script>

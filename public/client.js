@@ -20,6 +20,26 @@ var iceServers = {
 }
 var constraints = { audio: true, video: true };
 var isCaller;
+var micActive = true;
+var videoActive = true;
+
+
+function toggleVideo() {
+    if(localStream != null && localStream.getVideoTracks().length > 0){
+        videoActive = !videoActive;
+  
+      localStream.getVideoTracks()[0].enabled = videoActive;
+    }
+  
+  }
+  
+  function toggleMic() {
+    if(localStream != null && localStream.getAudioTracks().length > 0){
+        micActive = !micActive;
+  
+      localStream.getAudioTracks()[0].enabled = videoActive;
+    }   
+}
 
 var socket = io();
 btnGoRoom.onclick = function () {
