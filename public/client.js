@@ -18,7 +18,7 @@ var iceServers = {
         { 'urls': 'stun:stun.l.google.com:19302' }
     ]
 }
-var constraints = { audio: true, video: { facingMode: { exact: "environment" } } };
+var constraints = { audio: true, video: true };
 var isCaller;
 
 var socket = io();
