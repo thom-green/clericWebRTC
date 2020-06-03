@@ -18,7 +18,7 @@ var iceServers = {
         { 'urls': 'stun:stun.l.google.com:19302' }
     ]
 }
-var streamConstraints = { audio: true, video: true };
+var constraints = { audio: true, video: { facingMode: { exact: "environment" } } };
 var isCaller;
 
 var socket = io();
@@ -39,7 +39,7 @@ btnGoRoom.onclick = function () {
 
 // message handlers
 socket.on('created', function (room) {
-    navigator.mediaDevices.getUserMedia(streamConstraints).then(function (stream) {
+    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         localStream = stream;
         localVideo.srcObject = stream;
         isCaller = true;
@@ -49,7 +49,7 @@ socket.on('created', function (room) {
 });
 
 socket.on('joined', function (room) {
-    navigator.mediaDevices.getUserMedia(streamConstraints).then(function (stream) {
+    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         localStream = stream;
         localVideo.srcObject = stream;
         socket.emit('ready', roomNumber);
