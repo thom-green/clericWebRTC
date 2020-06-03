@@ -1,4 +1,3 @@
-// getting dom elements
 var divSelectRoom = document.getElementById("selectRoom");
 var divConsultingRoom = document.getElementById("consultingRoom");
 var inputRoomNumber = document.getElementById("roomNumber");
@@ -6,8 +5,8 @@ var inputDisplayName = document.getElementById("displayName");
 var btnGoRoom = document.getElementById("goRoom");
 var localVideo = document.getElementById("localVideo");
 var remoteVideo = document.getElementById("remoteVideo");
-
-// variables
+var callMinutes = document.getElementById("minutes");
+var callSeconds = document.getElementById("seconds");
 var roomNumber;
 var displayName;
 var localStream;
@@ -22,6 +21,7 @@ var constraints = { audio: true, video: true };
 var isCaller;
 var micActive = true;
 var videoActive = true;
+var secondsCount = 0;
 
 
 function toggleVideo() {
@@ -33,13 +33,30 @@ function toggleVideo() {
   
   }
   
-  function toggleMic() {
+function toggleMic() {
     if(localStream != null && localStream.getAudioTracks().length > 0){
         micActive = !micActive;
   
       localStream.getAudioTracks()[0].enabled = micActive;
     }   
 }
+
+function logCallDuration() {
+  ++secondsCount;
+  callSeconds.innerHTML = callTimer(secondsCount % 60);
+  callMinutes.innerHTML = callTimer(parseInt(secondsCount / 60));
+}
+
+function callTimer(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
+
 
 var socket = io();
 btnGoRoom.onclick = function () {
@@ -55,6 +72,7 @@ btnGoRoom.onclick = function () {
     }
     $(".novideoContainer").hide();
     $("#localUserName").removeClass("loading");
+    setInterval(logCallDuration, 1000);
 };
 
 // message handlers
