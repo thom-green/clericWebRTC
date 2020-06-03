@@ -39,19 +39,13 @@
 
                 <div class="col-md-6 col-sm-12 userVideo">
                     <img class="btmLogo" src="imgs/logo_white.png" alt="cleric_logo">
-                    <!-- <span class="flex-container">
-                        <ul>
-                            <li>
-                                <i class="fas fa-microphone-slash"></i>
-                            </li>
-                            <li>
-                                <i class="fas fa-video-slash"></i>
-                            </li>
-                            <li>
-                                <i class="far fa-times-circle"></i>
-                            </li>
-                        </ul>
-                    </span> -->
+                    <span class="flex-container controlSet">
+                                <i>00:00</i>
+                                <i id="mic" class="fas fa-microphone"></i>
+                                <i id="video" class="fas fa-video"></i>
+                                <i id="settings" class="fas fa-cog"></i>
+                                <i id="endChat" class="fas fa-times"></i>
+                    </span>
                     <video id="localVideo" autoplay muted="muted"></video>
                     <div class="novideoContainer flex-container">
                         <i class="noVideo fas fa-video-slash"></i>
@@ -95,6 +89,22 @@
         $(window).on('load',function(){
         $('#exampleModal').modal('show');
     });
+
+
+    $('#mic').click(function() {
+        $(this).toggleClass("fa-microphone fa-microphone-slash")
+        if($(this).hasClass("fa-microphone-slash")){
+            console.log('Mic disabled');
+        }
+    });
+
+    $('#video').click(function() {
+        $(this).toggleClass("fa-video fa-video-slash")
+        if($(this).hasClass("fa-video-slash")){
+            console.log('Video disabled');
+        }
+    });
+
     </script>
 
 </body>
