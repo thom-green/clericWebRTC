@@ -529,10 +529,19 @@ video {
 }
 
 .noVideo {
-    font-size: 100px;
+    font-size: 100px !important;
     padding: 1rem;
     height: 100%;
     margin-top: 12.5%;
+}
+
+#noPartnerVideoContainer {
+  display: none;
+}
+
+.noPartnerVideo {
+  font-size: 240px !important;
+  padding-top: 240px;
 }
 
 #localVideo {

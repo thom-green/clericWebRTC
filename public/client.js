@@ -173,6 +173,7 @@ function onIceCandidate(event) {
     }
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
+    $("#noPartnerVideoContainer").show();
     console.log(event);
 }
 
