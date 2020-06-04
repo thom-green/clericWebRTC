@@ -183,13 +183,18 @@ function onAddStream(event) {
     remoteStream = event.stream;
 }
 
+
+
 //Check for partner video playing
 function checkForAudio(){
     var video = $('remoteVideo');
-    if(video.duration > 0 && !video.paused) {
-        console.log('Remote video is playing audio');
-    }
-    else {
-        console.log('Remote video is muted');
-    }
+
+    console.log(video.paused);
+
+    // if(video.duration > 0 && !video.paused) {
+    //     console.log('Remote video is playing audio');
+    // }
+    // else {
+    //     console.log('Remote video is muted');
+    // }
 }
