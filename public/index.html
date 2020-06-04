@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <title>Cleric WebRTC POC</title>
 </head>
 <body>
@@ -41,12 +43,12 @@
 
                 <div class="col-md-6 col-sm-12 userVideo">
                     <div class="flex-container">
-                        <span class="controlSet">
+                        <span class="controlSet flex-container">
                             <i id="callTime"><label id="minutes">00</label>:<label id="seconds">00</label></i>
-                            <i id="mic" class="fas fa-microphone"></i>
-                            <i id="video" class="fas fa-video"></i>
-                            <i id="settings" class="fas fa-cog"></i>
-                            <i id="endChat" class="fas fa-times"></i>
+                            <i id="mic" class="material-icons">mic</i>
+                            <i id="video" class="material-icons">videocam</i>
+                            <i id="settings" class="material-icons">settings</i>
+                            <i id="endChat" class="material-icons">close</i>
                         </span>
                     </div>
                     <video id="localVideo" autoplay muted="muted"></video>
@@ -88,12 +90,23 @@
 
 
     $('#mic').click(function() {
-        $(this).toggleClass("fa-microphone fa-microphone-slash");
+        console.log($(this).text());
+        if($(this).text() === "mic"){
+            $(this).text("mic_off");
+        }
+        else {
+            $(this).text("mic");
+        }
         toggleMic();
     });
 
     $('#video').click(function() {
-        $(this).toggleClass("fa-video fa-video-slash");
+        if($(this).text() === "videocam"){
+            $(this).text("videocam_off");
+        }
+        else {
+            $(this).text("videocam");
+        }
         toggleVideo();
     });
 
