@@ -45,6 +45,7 @@ function logCallDuration() {
   ++secondsCount;
   callSeconds.innerHTML = callTimer(secondsCount % 60);
   callMinutes.innerHTML = callTimer(parseInt(secondsCount / 60));
+  checkForAudio();
 }
 
 function callTimer(val) {
@@ -183,6 +184,7 @@ function onAddStream(event) {
 }
 
 //Check for partner video playing
+function checkForAudio(){
     var video = $('remoteVideo');
     if(video.duration > 0 && !video.paused) {
         console.log('Remote video is playing audio');
@@ -190,3 +192,4 @@ function onAddStream(event) {
     else {
         console.log('Remote video is muted');
     }
+}
