@@ -172,6 +172,7 @@ function onIceCandidate(event) {
         })
     }
     $("#remoteUserName").show();
+    $("#waitingMessage").hide();
     console.log(event);
 }
 

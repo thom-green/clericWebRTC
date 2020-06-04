@@ -35,17 +35,20 @@
                     <span class="row flex-container">
                         <h3 id="remoteUserName">. . .</h3>
                     </span>
+                        <p id="waitingMessage">Waiting for others to join</p>
                         <video  class="loading" id="remoteVideo" autoplay></video>
                 </div>
 
                 <div class="col-md-6 col-sm-12 userVideo">
-                    <span class="flex-container controlSet">
-                                <i id="callTime"><label id="minutes">00</label>:<label id="seconds">00</label></i>
-                                <i id="mic" class="fas fa-microphone"></i>
-                                <i id="video" class="fas fa-video"></i>
-                                <i id="settings" class="fas fa-cog"></i>
-                                <i id="endChat" class="fas fa-times"></i>
-                    </span>
+                    <div class="flex-container">
+                        <span class="controlSet">
+                            <i id="callTime"><label id="minutes">00</label>:<label id="seconds">00</label></i>
+                            <i id="mic" class="fas fa-microphone"></i>
+                            <i id="video" class="fas fa-video"></i>
+                            <i id="settings" class="fas fa-cog"></i>
+                            <i id="endChat" class="fas fa-times"></i>
+                        </span>
+                    </div>
                     <video id="localVideo" autoplay muted="muted"></video>
                     <div class="novideoContainer flex-container">
                         <i class="noVideo fas fa-video-slash"></i>

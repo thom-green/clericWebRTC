@@ -591,9 +591,6 @@ video {
   position: absolute;
   margin: 1rem;
   background: #e91e63;
-  width: 475.75px;
-  margin-left: 37.5%;
-  margin-right: 37.5%;
   color: white;
 }
 
@@ -616,6 +613,15 @@ video {
 .controlSet > i:nth-child(1):hover {
   opacity: 1;
   cursor: default;
+}
+
+#waitingMessage {
+  color: white;
+  font-size: 3rem;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 50%;
 }
 
 @keyframes ellipsis {
