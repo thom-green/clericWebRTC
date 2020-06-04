@@ -181,3 +181,12 @@ function onAddStream(event) {
     remoteVideo.srcObject = event.streams[0];
     remoteStream = event.stream;
 }
+
+//Check for partner video playing
+var video = $('#remoteVideo');
+if(video.duration > 0 && !video.paused) {
+    console.log('Remote video is playing audio');
+}
+else {
+    console.log('Remote video is muted');
+}
