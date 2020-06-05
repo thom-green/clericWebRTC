@@ -27,7 +27,7 @@ var secondsCount = 0;
 function toggleVideo() {
     if(localStream != null && localStream.getVideoTracks().length > 0){
         videoActive = !videoActive;
-  
+        sendMessage('toggle', 'videoOff');
       localStream.getVideoTracks()[0].enabled = videoActive;
     }
   
@@ -36,7 +36,7 @@ function toggleVideo() {
 function toggleMic() {
     if(localStream != null && localStream.getAudioTracks().length > 0){
         micActive = !micActive;
-  
+        sendMessage('toggle', 'audioOff');
       localStream.getAudioTracks()[0].enabled = micActive;
     }   
 }
@@ -185,6 +185,9 @@ function setUsername() {
         console.log(data);
         if(data.user != displayName && data.message === 'username'){
             $("#remoteUserName").text(data.user);
+        }
+        else if(data.user != displayName && data.message === 'toggle'){
+            console.log(data.message);
         }
     }
  })
