@@ -184,7 +184,7 @@ function setUsername() {
     if(user) {
         console.log(data);
         if(data.message != displayName){
-            $("#remoteUserName").text(data.message);
+            $("#remoteUserName").text(data.user);
         }
     }
  })
