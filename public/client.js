@@ -45,7 +45,7 @@ function logCallDuration() {
   ++secondsCount;
   callSeconds.innerHTML = callTimer(secondsCount % 60);
   callMinutes.innerHTML = callTimer(parseInt(secondsCount / 60));
-  checkForAudio();
+//   checkForAudio();
 }
 
 function callTimer(val) {
@@ -73,6 +73,7 @@ btnGoRoom.onclick = function () {
     }
     $(".novideoContainer").hide();
     $("#localUserName").removeClass("loading");
+    $("#waitingMessage").text('Waiting for others to join room ' + roomNumber);
     setInterval(logCallDuration, 1000);
 };
 
@@ -175,7 +176,6 @@ function onIceCandidate(event) {
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
     $("#noPartnerVideoContainer").show();
-    console.log(event);
 }
 
 function onAddStream(event) {
