@@ -35,18 +35,7 @@ io.on('connection', function (socket) {
 
     socket.on('setUsername', function(user) {
         console.log(user + ' has joined the room');
-        socket.broadcast.to(event.room).emit('partnerName', user);
     })
-
-    // socket.on('setUsername', function(data) {
-    //     console.log(data);
-    //     if(users.indexOfData(data) > -1) {
-    //         users.push(data);
-    //         socket.emit('userSet', {username: data});
-    //     } else {
-    //         socket.emit('userExits', data + 'user already exists, please use a different name');
-    //     }
-    // });
 
     socket.on('ready', function (room){
         socket.broadcast.to(room).emit('ready');
