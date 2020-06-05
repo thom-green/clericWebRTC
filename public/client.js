@@ -172,12 +172,12 @@ function setUsername() {
  });
  socket.on('userSet', function(data) {
     user = data.username;
-    document.body.innerHTML = '<input type = "text" id = "message">\
-    <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
-    <div id = "message-container"></div>';
+    // document.body.innerHTML = '<input type = "text" id = "message">\
+    // <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
+    // <div id = "message-container"></div>';
  });
  function sendMessage() {
-    var msg = document.getElementById('message').value;
+    var msg = user;
     if(msg) {
        socket.emit('msg', {message: msg, user: user});
     }
@@ -187,6 +187,7 @@ function setUsername() {
        document.getElementById('message-container').innerHTML += '<div><b>' + 
           data.user + '</b>: ' + data.message + '</div>'
     }
+    $("#remoteUserName").text(data.message);
  })
 
 // handler functions
@@ -204,6 +205,7 @@ function onIceCandidate(event) {
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
     $("#noPartnerVideoContainer").show();
+    sendMessage();
     console.log(event);
 }
 
