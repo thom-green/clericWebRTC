@@ -175,7 +175,7 @@ function setUsername() {
  }
  socket.on('newmsg', function(data) {
     if(user) {
-        console.log(data);
+        // console.log(data);
         if(data.user != displayName && data.message === data.user){
             $("#remoteUserName").text(data.user);
         }
@@ -188,6 +188,7 @@ function setUsername() {
 
 
 function displayPrompts(prompt, user){
+    console.log(prompt);
     if(prompt === 'micfalse'){
         alert(user + ' not sharing audio')
     }
