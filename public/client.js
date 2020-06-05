@@ -111,7 +111,7 @@ socket.on('candidate', function (event) {
         candidate: event.candidate
     });
     rtcPeerConnection.addIceCandidate(candidate);
-    sendMessage();
+    // sendMessage();
 });
 
 socket.on('ready', function () {
@@ -134,7 +134,7 @@ socket.on('ready', function () {
                 console.log(error)
             })
     }
-    sendMessage();
+    // sendMessage();
 });
 
 socket.on('offer', function (event) {
@@ -158,12 +158,12 @@ socket.on('offer', function (event) {
                 console.log(error)
             })
     }
-    sendMessage();
+    // sendMessage();
 });
 
 socket.on('answer', function (event) {
     rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
-    sendMessage();
+    // sendMessage();
 });
 
 function setUsername() {
@@ -211,7 +211,7 @@ function onIceCandidate(event) {
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
     $("#noPartnerVideoContainer").show();
-    sendMessage();
+    // sendMessage();
     console.log(event);
 }
 
