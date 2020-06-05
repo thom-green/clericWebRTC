@@ -27,7 +27,7 @@ var secondsCount = 0;
 function toggleVideo() {
     if(localStream != null && localStream.getVideoTracks().length > 0){
         videoActive = !videoActive;
-        sendMessage('toggle', videoActive);
+        sendMessage('toggle', ('video' + videoActive));
       localStream.getVideoTracks()[0].enabled = videoActive;
     }  
   }
@@ -35,7 +35,7 @@ function toggleVideo() {
 function toggleMic() {
     if(localStream != null && localStream.getAudioTracks().length > 0){
         micActive = !micActive;
-        sendMessage('toggle', micActive);
+        sendMessage('toggle', ('mic' + micActive));
       localStream.getAudioTracks()[0].enabled = micActive;
     }   
 }
