@@ -102,7 +102,7 @@ socket.on('joined', function (room) {
     }).catch(function (err) {
         console.log('An error ocurred when accessing media devices', err);
     });
-    console.log(socket.username);
+    sendMessage();
 });
 
 socket.on('candidate', function (event) {
@@ -111,6 +111,7 @@ socket.on('candidate', function (event) {
         candidate: event.candidate
     });
     rtcPeerConnection.addIceCandidate(candidate);
+    sendMessage();
 });
 
 socket.on('ready', function () {
@@ -133,6 +134,7 @@ socket.on('ready', function () {
                 console.log(error)
             })
     }
+    sendMessage();
 });
 
 socket.on('offer', function (event) {
@@ -156,10 +158,12 @@ socket.on('offer', function (event) {
                 console.log(error)
             })
     }
+    sendMessage();
 });
 
 socket.on('answer', function (event) {
     rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
+    sendMessage();
 });
 
 function setUsername() {
