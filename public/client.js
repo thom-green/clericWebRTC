@@ -171,9 +171,9 @@ function setUsername() {
     socket.emit('setUsername', document.getElementById('name').value);
  };
  var user;
- socket.on('userExists', function(data) {
-    document.getElementById('error-container').innerHTML = data;
- });
+//  socket.on('userExists', function(data) {
+//     document.getElementById('error-container').innerHTML = data;
+//  });
  socket.on('userSet', function(data) {
     user = data.username;
     // document.body.innerHTML = '<input type = "text" id = "message">\

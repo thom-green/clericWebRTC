@@ -36,12 +36,9 @@ io.on('connection', function (socket) {
     socket.on('setUsername', function(data) {
         console.log(data);
         
-        if(users.indexOf(data) > -1) {
-           socket.emit('userExists', data + ' username is taken! Try some other username.');
-        } else {
            users.push(data);
            socket.emit('userSet', {username: data});
-        }
+
      });
      
      socket.on('msg', function(data) {
