@@ -176,7 +176,7 @@ function setUsername() {
     // <div id = "message-container"></div>';
  });
  function sendMessage() {
-    var msg = user;
+    var msg = displayName;
     if(msg) {
        socket.emit('msg', {message: msg, user: user});
     }
@@ -185,7 +185,7 @@ function setUsername() {
     if(user) {
         console.log(data.message);
         // console.log('message is: ' + data.message + ' ,username is: ' + displayName);
-        if(!data.message === displayName){
+        if(data.message != displayName){
             $("#remoteUserName").text(data.message);
         }
     }
