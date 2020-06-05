@@ -175,7 +175,7 @@ function setUsername() {
     // <div id = "message-container"></div>';
  });
  function sendMessage(type, content) {
-    var msg = content;
+    var msg = type;
     if(type = 'username') {
        socket.emit('msg', {message: msg, user: user});
     }
