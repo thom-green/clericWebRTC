@@ -27,32 +27,17 @@ var secondsCount = 0;
 function toggleVideo() {
     if(localStream != null && localStream.getVideoTracks().length > 0){
         videoActive = !videoActive;
-
+        sendMessage('toggle', videoActive);
       localStream.getVideoTracks()[0].enabled = videoActive;
-    }
-
-    if(videoActive = true){
-        sendMessage('toggle', 'videoOn');
-    }
-    else {
-        sendMessage('toggle', 'videoOff');
-    }
-  
+    }  
   }
   
 function toggleMic() {
     if(localStream != null && localStream.getAudioTracks().length > 0){
         micActive = !micActive;
-
+        sendMessage('toggle', micActive);
       localStream.getAudioTracks()[0].enabled = micActive;
     }   
-
-    if(micActive = true){
-        sendMessage('toggle', 'micOn');
-    }
-    else {
-        sendMessage('toggle', 'micOff');
-    }
 }
 
 function logCallDuration() {
