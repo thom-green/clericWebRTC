@@ -102,7 +102,7 @@ socket.on('joined', function (room) {
     }).catch(function (err) {
         console.log('An error ocurred when accessing media devices', err);
     });
-    sendMessage();
+    // sendMessage();
 });
 
 socket.on('candidate', function (event) {
@@ -111,7 +111,7 @@ socket.on('candidate', function (event) {
         candidate: event.candidate
     });
     rtcPeerConnection.addIceCandidate(candidate);
-    // sendMessage();
+    sendMessage();
 });
 
 socket.on('ready', function () {
