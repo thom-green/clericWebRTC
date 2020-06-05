@@ -102,7 +102,6 @@ socket.on('joined', function (room) {
     }).catch(function (err) {
         console.log('An error ocurred when accessing media devices', err);
     });
-    // sendMessage();
 });
 
 socket.on('candidate', function (event) {
@@ -111,7 +110,6 @@ socket.on('candidate', function (event) {
         candidate: event.candidate
     });
     rtcPeerConnection.addIceCandidate(candidate);
-    // sendMessage();
 });
 
 socket.on('ready', function () {
@@ -134,7 +132,6 @@ socket.on('ready', function () {
                 console.log(error)
             })
     }
-    sendMessage();
 });
 
 socket.on('offer', function (event) {
@@ -158,12 +155,10 @@ socket.on('offer', function (event) {
                 console.log(error)
             })
     }
-    // sendMessage();
 });
 
 socket.on('answer', function (event) {
     rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
-    // sendMessage();
 });
 
 function setUsername() {
@@ -182,17 +177,17 @@ function setUsername() {
  });
  function sendMessage() {
     var msg = user;
+    console.log(msg);
     if(msg) {
        socket.emit('msg', {message: msg, user: user});
     }
  }
  socket.on('newmsg', function(data) {
     if(user) {
-        console.log('message is: ' + data.message + ' ,username is: ' + displayName);
-        $("#remoteUserName").text(data.message);
-        // if(!data.message === displayName){
-        //     $("#remoteUserName").text(data.message);
-        // }
+        // console.log('message is: ' + data.message + ' ,username is: ' + displayName);
+        if(!data.message === displayName){
+            $("#remoteUserName").text(data.message);
+        }
     }
  })
 
@@ -211,7 +206,7 @@ function onIceCandidate(event) {
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
     $("#noPartnerVideoContainer").show();
-    // sendMessage();
+    sendMessage();
     console.log(event);
 }
 
