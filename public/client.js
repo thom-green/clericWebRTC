@@ -162,7 +162,6 @@ socket.on('answer', function (event) {
 });
 
 function setUsername() {
-    console.log('Setting username');
     socket.emit('setUsername', document.getElementById('name').value);
  };
  var user;
@@ -183,8 +182,6 @@ function setUsername() {
  }
  socket.on('newmsg', function(data) {
     if(user) {
-        console.log(data.message);
-        // console.log('message is: ' + data.message + ' ,username is: ' + displayName);
         if(data.message != displayName){
             $("#remoteUserName").text(data.message);
         }
@@ -207,7 +204,6 @@ function onIceCandidate(event) {
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
     $("#noPartnerVideoContainer").show();
-    console.log(event);
 }
 
 function onAddStream(event) {
