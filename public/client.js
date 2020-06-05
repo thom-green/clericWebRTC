@@ -27,7 +27,12 @@ var secondsCount = 0;
 function toggleVideo() {
     if(localStream != null && localStream.getVideoTracks().length > 0){
         videoActive = !videoActive;
-        sendMessage('toggle', 'videoOff');
+        if(videoActive = true){
+            sendMessage('toggle', 'videoOn');
+        }
+        else {
+            sendMessage('toggle', 'videoOff');
+        }
       localStream.getVideoTracks()[0].enabled = videoActive;
     }
   
@@ -36,7 +41,12 @@ function toggleVideo() {
 function toggleMic() {
     if(localStream != null && localStream.getAudioTracks().length > 0){
         micActive = !micActive;
-        sendMessage('toggle', 'audioOff');
+        if(micActive = true){
+            sendMessage('toggle', 'micOn');
+        }
+        else {
+            sendMessage('toggle', 'micOff');
+        }
       localStream.getAudioTracks()[0].enabled = micActive;
     }   
 }
