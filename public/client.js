@@ -194,7 +194,7 @@ function displayPrompts(prompt, user){
     }
 
     if(prompt === 'videofalse'){
-        alert(user + ' not sharing audio')
+        alert(user + ' not sharing video')
     }
 }
 
