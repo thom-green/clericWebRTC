@@ -44,11 +44,6 @@ io.on('connection', function (socket) {
         io.sockets.emit('newmsg', data);
      })
 
-     socket.on('msg', function(data) {
-        //Send message to everyone
-        io.sockets.emit('newmsg', data);
-     })
-
     socket.on('ready', function (room){
         socket.broadcast.to(room).emit('ready');
     });
