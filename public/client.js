@@ -184,10 +184,9 @@ function setUsername() {
  }
  socket.on('newmsg', function(data) {
     if(user) {
-       document.getElementById('message-container').innerHTML += '<div><b>' + 
-          data.user + '</b>: ' + data.message + '</div>'
+        console.log(data.message);
+        $("#remoteUserName").text(data.message);
     }
-    $("#remoteUserName").text(data.message);
  })
 
 // handler functions
