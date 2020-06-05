@@ -164,14 +164,8 @@ function setUsername() {
     socket.emit('setUsername', document.getElementById('name').value);
  };
  var user;
-//  socket.on('userExists', function(data) {
-//     document.getElementById('error-container').innerHTML = data;
-//  });
  socket.on('userSet', function(data) {
     user = data.username;
-    // document.body.innerHTML = '<input type = "text" id = "message">\
-    // <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
-    // <div id = "message-container"></div>';
  });
  function sendMessage(type, content) {
     var msg = content;
@@ -187,9 +181,21 @@ function setUsername() {
         }
         else if(data.user != displayName && data.message === 'toggle'){
             console.log(data.message);
+            displayPrompts(data.message, data.user)
         }
     }
  })
+
+
+function displayPrompts(prompt, user){
+    if(prompt === 'micfalse'){
+        alert(user + ' not sharing audio')
+    }
+
+    if(prompt === 'videofalse'){
+        alert(user + ' not sharing audio')
+    }
+}
 
 // handler functions
 function onIceCandidate(event) {
