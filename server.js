@@ -33,9 +33,7 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('setUsername', function(data) {
-        console.log(data);
-        
+    socket.on('setUsername', function(data) {        
            users.push(data);
            socket.emit('userSet', {username: data});
 
