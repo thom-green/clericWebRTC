@@ -190,11 +190,17 @@ function setUsername() {
 function displayPrompts(prompt, user){
     console.log(prompt);
     if(prompt === 'micfalse'){
-        alert(user + ' not sharing audio')
+        $("#remoteUserName").text(data.user + ' (not sharing audio)');
+    }
+    else if(prompt === 'mictrue'){
+        $("#remoteUserName").text(data.user);
     }
 
     if(prompt === 'videofalse'){
-        alert(user + ' not sharing video')
+        $("#remoteUserName").text(data.user + ' (not sharing video)');
+    }
+    else if(prompt === 'videotrue'){
+        $("#remoteUserName").text(data.user);
     }
 }
 
