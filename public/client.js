@@ -67,6 +67,7 @@ btnGoRoom.onclick = function () {
         roomNumber = inputRoomNumber.value;
         displayName = inputDisplayName.value;
         socket.emit('create or join', roomNumber);
+        socket.emit('setUsername', displayName)
         divSelectRoom.style = "display: none;";
         divConsultingRoom.style = "display: block;";
         $("#localUserName").text(displayName);
@@ -161,6 +162,10 @@ socket.on('answer', function (event) {
     rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
 });
 
+function setUsername() {
+    socket.emit('setUsername', document.getElementById('displayName').value);
+}
+
 // handler functions
 function onIceCandidate(event) {
     if (event.candidate) {
@@ -176,6 +181,7 @@ function onIceCandidate(event) {
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
     $("#noPartnerVideoContainer").show();
+    console.log(event);
 }
 
 function onAddStream(event) {

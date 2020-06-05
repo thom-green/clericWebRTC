@@ -10,13 +10,13 @@ const port = process.env.PORT || 3000;
 app.use(express.static('public'));
 
 
+users=[];
 // signaling
 io.on('connection', function (socket) {
     console.log('a user connected');
 
     socket.on('create or join', function (room) {
-        console.log('create or join to room ', room);
-        
+        console.log('create or join to room ', room);        
         var myRoom = io.sockets.adapter.rooms[room] || { length: 0 };
         var numClients = myRoom.length;
 
@@ -32,6 +32,21 @@ io.on('connection', function (socket) {
             socket.emit('full', room);
         }
     });
+
+    socket.on('setUsername', function(user) {
+        console.log(user + ' has joined the room');
+        socket.broadcast.to(event.room).emit('partnerName', user);
+    })
+
+    // socket.on('setUsername', function(data) {
+    //     console.log(data);
+    //     if(users.indexOfData(data) > -1) {
+    //         users.push(data);
+    //         socket.emit('userSet', {username: data});
+    //     } else {
+    //         socket.emit('userExits', data + 'user already exists, please use a different name');
+    //     }
+    // });
 
     socket.on('ready', function (room){
         socket.broadcast.to(room).emit('ready');
