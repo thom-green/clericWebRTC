@@ -177,13 +177,13 @@ function setUsername() {
  });
  function sendMessage() {
     var msg = user;
-    console.log(msg);
     if(msg) {
        socket.emit('msg', {message: msg, user: user});
     }
  }
  socket.on('newmsg', function(data) {
     if(user) {
+        console.log(data.message);
         // console.log('message is: ' + data.message + ' ,username is: ' + displayName);
         if(!data.message === displayName){
             $("#remoteUserName").text(data.message);
@@ -202,11 +202,11 @@ function onIceCandidate(event) {
             candidate: event.candidate.candidate,
             room: roomNumber
         })
+        sendMessage();
     }
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
     $("#noPartnerVideoContainer").show();
-    sendMessage();
     console.log(event);
 }
 
