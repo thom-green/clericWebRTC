@@ -111,7 +111,7 @@ socket.on('candidate', function (event) {
         candidate: event.candidate
     });
     rtcPeerConnection.addIceCandidate(candidate);
-    sendMessage();
+    // sendMessage();
 });
 
 socket.on('ready', function () {
@@ -134,7 +134,7 @@ socket.on('ready', function () {
                 console.log(error)
             })
     }
-    // sendMessage();
+    sendMessage();
 });
 
 socket.on('offer', function (event) {
