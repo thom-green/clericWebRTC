@@ -174,9 +174,9 @@ function setUsername() {
     // <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
     // <div id = "message-container"></div>';
  });
- function sendMessage() {
-    var msg = displayName;
-    if(msg) {
+ function sendMessage(type, content) {
+    var msg = content;
+    if(type = 'username') {
        socket.emit('msg', {message: msg, user: user});
     }
  }
@@ -199,7 +199,7 @@ function onIceCandidate(event) {
             candidate: event.candidate.candidate,
             room: roomNumber
         })
-        sendMessage();
+        sendMessage('username', displayName);
     }
     $("#remoteUserName").show();
     $("#waitingMessage").hide();
