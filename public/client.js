@@ -183,7 +183,7 @@ function setUsername() {
  socket.on('newmsg', function(data) {
     if(user) {
         console.log(data);
-        if(data.user != displayName && data.message === 'username'){
+        if(data.user != displayName && data.message === data.user){
             $("#remoteUserName").text(data.user);
         }
         else if(data.user != displayName && data.message === 'toggle'){
