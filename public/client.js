@@ -179,7 +179,7 @@ function setUsername() {
         if(data.user != displayName && data.message === data.user){
             $("#remoteUserName").text(data.user);
         }
-        else if(data.user != displayName && data.message === 'toggle'){
+        else if(data.user != displayName){
             console.log(data.message);
             displayPrompts(data.message, data.user)
         }
