@@ -61,7 +61,7 @@ function callTimer(val) {
 var socket = io();
 btnGoRoom.onclick = function () {
     if (inputRoomNumber.value === '') {
-        alert("Please type a room number")
+        alert("Please type a session number")
     } else {
         roomNumber = inputRoomNumber.value;
         displayName = inputDisplayName.value;
@@ -73,7 +73,7 @@ btnGoRoom.onclick = function () {
     }
     $(".novideoContainer").hide();
     $("#localUserName").removeClass("loading");
-    $("#waitingMessage").text('Waiting for others to join room ' + roomNumber);
+    $("#waitingMessage").text('Waiting for others to join session ' + roomNumber);
     setInterval(logCallDuration, 1000);
 };
 
