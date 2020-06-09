@@ -17,7 +17,7 @@ var iceServers = {
         { 'urls': 'stun:stun.l.google.com:19302' }
     ]
 }
-var constraints = { audio: true, video: true };
+var constraints = { audio: audioSource, video: videoSource };
 var isCaller;
 var micActive = true;
 var videoActive = true;
@@ -275,8 +275,8 @@ function start() {
   const audioSource = audioInputSelect.value;
   const videoSource = videoSelect.value;
   constraints = {
-    audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+    audio: audioSource,
+    video: videoSource
   };
   navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         localStream = stream;
@@ -285,6 +285,8 @@ function start() {
     }).catch(function (err) {
         console.log('An error ocurred when accessing media devices', err);
     });
+
+    console.log(constraints);
 }
 
 audioInputSelect.onchange = start;
