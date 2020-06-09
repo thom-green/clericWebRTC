@@ -307,10 +307,12 @@ function changeAudioDestination(){
 
 
 function switchInputs() {
+    if(localStream){
         localStream.getTracks(forEach(track => {
             console.log(track)
             track.stop();
         }));
+    }
 
   const audioSource = audioInputSelect.value;
   const videoSource = videoSelect.value;
