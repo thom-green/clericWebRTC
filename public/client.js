@@ -40,6 +40,28 @@ function toggleMic() {
     }   
 }
 
+function switchStreamData() {
+    // Stop the current stream
+    localStream.getTracks().forEach(function(track) {
+        track.stop();
+    });
+
+    // navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+    //     replaceTracks(stream);
+    // }).catch(function(error){
+    //     'Somthing went wrong switching the stream';
+    // })
+
+    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+        localStream = stream;
+        localVideo.srcObject = stream;
+        replaceTracks(stream);
+        isCaller = true;
+    }).catch(function (err) {
+        console.log('An error ocurred when accessing media devices', err);
+    });
+}
+
 function logCallDuration() {
   ++secondsCount;
   callSeconds.innerHTML = callTimer(secondsCount % 60);
@@ -271,26 +293,29 @@ function gotDevices(deviceInfos) {
 navigator.mediaDevices.enumerateDevices().then(gotDevices);
 
 
-function start() {
+function switchInputs() {
   const audioSource = audioInputSelect.value;
   const videoSource = videoSelect.value;
   constraints = {
     audio: audioSource,
     video: videoSource
   };
-  navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
-        localStream = stream;
-        localVideo.srcObject = stream;
-        isCaller = true;
-    }).catch(function (err) {
-        console.log('An error ocurred when accessing media devices', err);
-    });
 
-    console.log(constraints);
+//   navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+//         localStream = stream;
+//         localVideo.srcObject = stream;
+//         isCaller = true;
+//     }).catch(function (err) {
+//         console.log('An error ocurred when accessing media devices', err);
+//     });
+
+    switchStreamData();
 }
 
-audioInputSelect.onchange = start;
-audioOutputSelect.onchange = start;
-videoSelect.onchange = start;
+audioInputSelect.onchange = switchInputs;
+audioOutputSelect.onchange = switchInputs;
+videoSelect.onchange = switchInputs;
 
 console.log(constraints);
+
+
