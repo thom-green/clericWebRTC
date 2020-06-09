@@ -252,7 +252,7 @@ function onAddStream(event) {
 
 // Source selection
 
-const videoElement = document.querySelector('localVideo');
+const videoElement = document.getElementById('remoteVideo');
 const audioInputSelect = document.querySelector('select#audioSource');
 const audioOutputSelect = document.querySelector('select#audioOutput');
 const videoSelect = document.querySelector('select#videoSource');
@@ -292,6 +292,21 @@ function gotDevices(deviceInfos) {
 
 navigator.mediaDevices.enumerateDevices().then(gotDevices);
 
+function attachSinkId(element, sinkId){
+    if(typeof element.sinkId !== 'undefined') {
+        element.setSinkId(sinkId)
+            .then(() => {
+                console.log(`Success, audio output device attached: ${sinkId}`);
+            })
+    }
+}
+
+function changeAudioDestination(){
+    const audioDestination = audioOutputSelect.value;
+    console.log(audioDestination);
+    attachSinkId(videoElement, audioDestination);
+}
+
 
 function switchInputs() {
   const audioSource = audioInputSelect.value;
@@ -312,10 +327,14 @@ function switchInputs() {
     switchStreamData();
 }
 
-audioInputSelect.onchange = switchInputs;
-audioOutputSelect.onchange = switchInputs;
-videoSelect.onchange = switchInputs;
+function setAudioOutput(){
+    var audioOutput = audioOutputSelect.value;
+    console.log(remoteStream.sinkId);
+    // console.log(audioOutput);
+}
 
-console.log(constraints);
+audioInputSelect.onchange = switchInputs;
+audioOutputSelect.onchange = changeAudioDestination;
+videoSelect.onchange = switchInputs;
 
 
