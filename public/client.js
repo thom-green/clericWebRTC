@@ -40,28 +40,6 @@ function toggleMic() {
     }   
 }
 
-function switchStreamData() {
-    // Stop the current stream
-    localStream.getTracks().forEach(function(track) {
-        track.stop();
-    });
-
-    // navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-    //     replaceTracks(stream);
-    // }).catch(function(error){
-    //     'Somthing went wrong switching the stream';
-    // })
-
-    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
-        localStream = stream;
-        localVideo.srcObject = stream;
-        replaceTracks(stream);
-        isCaller = true;
-    }).catch(function (err) {
-        console.log('An error ocurred when accessing media devices', err);
-    });
-}
-
 function logCallDuration() {
   ++secondsCount;
   callSeconds.innerHTML = callTimer(secondsCount % 60);
@@ -197,7 +175,6 @@ function setUsername() {
  }
  socket.on('newmsg', function(data) {
     if(user) {
-        // console.log(data);
         if(data.user != displayName && data.message === data.user){
             $("#remoteUserName").text(data.user);
         }
@@ -303,34 +280,45 @@ function attachSinkId(element, sinkId){
 
 function changeAudioDestination(){
     const audioDestination = audioOutputSelect.value;
-    console.log(audioDestination);
     attachSinkId(videoElement, audioDestination);
 }
 
+// function switchStreamData() {
+//     // Stop the current stream
+//     localStream.getTracks().forEach(function(track) {
+//         track.stop();
+//     });
+
+//     // navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+//     //     replaceTracks(stream);
+//     // }).catch(function(error){
+//     //     'Somthing went wrong switching the stream';
+//     // })
+
+//     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+//         localStream = stream;
+//         localVideo.srcObject = stream;
+//         replaceTracks(stream);
+//         isCaller = true;
+//     }).catch(function (err) {
+//         console.log('An error ocurred when accessing media devices', err);
+//     });
+// }
+
 
 function switchInputs() {
+        localStream.getTracks(forEach(track => {
+            console.log(track)
+            track.stop();
+        }));
+
   const audioSource = audioInputSelect.value;
   const videoSource = videoSelect.value;
   constraints = {
     audio: audioSource,
     video: videoSource
   };
-
-//   navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
-//         localStream = stream;
-//         localVideo.srcObject = stream;
-//         isCaller = true;
-//     }).catch(function (err) {
-//         console.log('An error ocurred when accessing media devices', err);
-//     });
-
-    switchStreamData();
-}
-
-function setAudioOutput(){
-    var audioOutput = audioOutputSelect.value;
-    console.log(remoteStream.sinkId);
-    // console.log(audioOutput);
+  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices);
 }
 
 audioInputSelect.onchange = switchInputs;
