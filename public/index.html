@@ -12,10 +12,8 @@
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/style.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/5ac3be84e8.js"></script>
     <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <title>Cleric WebRTC POC</title>
@@ -31,6 +29,7 @@
                                 aria-hidden="true"></i></span></button></div>
             </div>
         </nav>
+        <!-- Navbar end -->
         <div class="container-fluid main">          
                 <div class="col-sm-12 flex-container" id="consultingRoom">
                     <span class="row flex-container">
@@ -61,8 +60,8 @@
                     <span id="localUserName" class="loading"></span>
                 </div>
         </div>
-        <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- User Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -83,12 +82,38 @@
         </div>
         </div>
     </div>
+    <!-- End user modal -->
+
+    <!-- Settings modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="select">
+                    <label for="audioSource">Audio input source: </label><select id="audioSource"></select>
+                </div>
+            
+                <div class="select">
+                    <label for="audioOutput">Audio output destination: </label><select id="audioOutput"></select>
+                </div>
+            
+                <div class="select">
+                    <label for="videoSource">Video source: </label><select id="videoSource"></select>
+                </div> 
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cleric" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- End settings modal -->
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
     <script>
         $(window).on('load',function(){
-        $('#exampleModal').modal('show');
+        $('#userModal').modal('show');
     });
 
 
@@ -111,6 +136,11 @@
         }
         toggleVideo();
     });
+
+    $('#settings').click(function(){
+        console.log('opening settings modal');
+        $('#settingsModal').modal('show');
+    })
 
     </script>
 

@@ -675,6 +675,10 @@ video {
   }
 }
 
+.modal-dialog {
+  margin: 35vh auto;
+}
+
 @media only screen and (max-width: 768px) {
   button.navbar-toggler {
     display: block;
