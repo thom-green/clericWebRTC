@@ -13,11 +13,27 @@ var localStream;
 var remoteStream;
 var rtcPeerConnection;
 var iceServers = {
-    'iceServers': [
-        { 'urls': 'stun:stun.l.google.com:19302' }
+    iceServers: [{
+            urls: ["stun:eu-turn5.xirsys.com"]
+        },
+        {
+            username: "XVVFlWLrPIpqgQbI6JQjjJEl9kTaR9kGyc2oCpxmRngjdDE9JRroNFtpu0XbfmaQAAAAAF86oAN0aG9tY2xlcmlj",
+            credential: "0ceabfac-e09d-11ea-a241-0242ac140004",
+            urls: [
+                "turn:eu-turn5.xirsys.com:80?transport=udp",
+                "turn:eu-turn5.xirsys.com:3478?transport=udp",
+                "turn:eu-turn5.xirsys.com:80?transport=tcp",
+                "turn:eu-turn5.xirsys.com:3478?transport=tcp",
+                "turns:eu-turn5.xirsys.com:443?transport=tcp",
+                "turns:eu-turn5.xirsys.com:5349?transport=tcp"
+            ]
+        }
     ]
 }
-var constraints = { audio: audioSource, video: videoSource };
+var constraints = {
+    audio: audioSource,
+    video: videoSource
+};
 var isCaller;
 var micActive = true;
 var videoActive = true;
@@ -25,41 +41,41 @@ var secondsCount = 0;
 
 
 function toggleVideo() {
-    if(localStream != null && localStream.getVideoTracks().length > 0){
+    if (localStream != null && localStream.getVideoTracks().length > 0) {
         videoActive = !videoActive;
         sendMessage('toggle', ('video' + videoActive));
-      localStream.getVideoTracks()[0].enabled = videoActive;
-    }  
-  }
-  
+        localStream.getVideoTracks()[0].enabled = videoActive;
+    }
+}
+
 function toggleMic() {
-    if(localStream != null && localStream.getAudioTracks().length > 0){
+    if (localStream != null && localStream.getAudioTracks().length > 0) {
         micActive = !micActive;
         sendMessage('toggle', ('mic' + micActive));
-      localStream.getAudioTracks()[0].enabled = micActive;
-    }   
+        localStream.getAudioTracks()[0].enabled = micActive;
+    }
 }
 
 function logCallDuration() {
-  ++secondsCount;
-  callSeconds.innerHTML = callTimer(secondsCount % 60);
-  callMinutes.innerHTML = callTimer(parseInt(secondsCount / 60));
-//   checkForAudio();
+    ++secondsCount;
+    callSeconds.innerHTML = callTimer(secondsCount % 60);
+    callMinutes.innerHTML = callTimer(parseInt(secondsCount / 60));
+    //   checkForAudio();
 }
 
 function callTimer(val) {
-  var valString = val + "";
-  if (valString.length < 2) {
-    return "0" + valString;
-  } else {
-    return valString;
-  }
+    var valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    } else {
+        return valString;
+    }
 }
 
 
 
 var socket = io();
-btnGoRoom.onclick = function () {
+btnGoRoom.onclick = function() {
     if (inputRoomNumber.value === '') {
         alert("Please type a session number")
     } else {
@@ -78,32 +94,32 @@ btnGoRoom.onclick = function () {
 };
 
 // message handlers
-socket.on('created', function (room) {
-    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+socket.on('created', function(room) {
+    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
         localStream = stream;
         localVideo.srcObject = stream;
         isCaller = true;
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log('An error ocurred when accessing media devices', err);
     });
 });
 
-socket.on('joined', function (room) {
+socket.on('joined', function(room) {
     socket.username = displayName;
-    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
         localStream = stream;
         localVideo.srcObject = stream;
         socket.emit(
-            'ready', 
+            'ready',
             roomNumber,
             socket.username
         );
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log('An error ocurred when accessing media devices', err);
     });
 });
 
-socket.on('candidate', function (event) {
+socket.on('candidate', function(event) {
     var candidate = new RTCIceCandidate({
         sdpMLineIndex: event.label,
         candidate: event.candidate
@@ -111,7 +127,7 @@ socket.on('candidate', function (event) {
     rtcPeerConnection.addIceCandidate(candidate);
 });
 
-socket.on('ready', function () {
+socket.on('ready', function() {
     if (isCaller) {
         rtcPeerConnection = new RTCPeerConnection(iceServers);
         rtcPeerConnection.onicecandidate = onIceCandidate;
@@ -133,7 +149,7 @@ socket.on('ready', function () {
     }
 });
 
-socket.on('offer', function (event) {
+socket.on('offer', function(event) {
     if (!isCaller) {
         rtcPeerConnection = new RTCPeerConnection(iceServers);
         rtcPeerConnection.onicecandidate = onIceCandidate;
@@ -156,49 +172,50 @@ socket.on('offer', function (event) {
     }
 });
 
-socket.on('answer', function (event) {
+socket.on('answer', function(event) {
     rtcPeerConnection.setRemoteDescription(new RTCSessionDescription(event));
 });
 
 function setUsername() {
     socket.emit('setUsername', document.getElementById('name').value);
- };
- var user;
- socket.on('userSet', function(data) {
+};
+var user;
+socket.on('userSet', function(data) {
     user = data.username;
- });
- function sendMessage(type, content) {
+});
+
+function sendMessage(type, content) {
     var msg = content;
-    if(type = 'username') {
-       socket.emit('msg', {message: msg, user: user});
+    if (type = 'username') {
+        socket.emit('msg', {
+            message: msg,
+            user: user
+        });
     }
- }
- socket.on('newmsg', function(data) {
-    if(user) {
-        if(data.user != displayName && data.message === data.user){
+}
+socket.on('newmsg', function(data) {
+    if (user) {
+        if (data.user != displayName && data.message === data.user) {
             $("#remoteUserName").text(data.user);
-        }
-        else if(data.user != displayName){
+        } else if (data.user != displayName) {
             console.log(data.message);
             displayPrompts(data.message, data.user)
         }
     }
- })
+})
 
 
-function displayPrompts(prompt, user){
+function displayPrompts(prompt, user) {
     console.log(prompt);
-    if(prompt === 'micfalse'){
+    if (prompt === 'micfalse') {
         $("#remoteUserName").text(user + ' (not sharing audio)');
-    }
-    else if(prompt === 'mictrue'){
+    } else if (prompt === 'mictrue') {
         $("#remoteUserName").text(user);
     }
 
-    if(prompt === 'videofalse'){
+    if (prompt === 'videofalse') {
         $("#remoteUserName").text(user + ' (not sharing video)');
-    }
-    else if(prompt === 'videotrue'){
+    } else if (prompt === 'videotrue') {
         $("#remoteUserName").text(user);
     }
 }
@@ -236,41 +253,41 @@ const videoSelect = document.querySelector('select#videoSource');
 const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
 
 function gotDevices(deviceInfos) {
-  // Handles being called several times to update labels. Preserve values.
-  const values = selectors.map(select => select.value);
-  selectors.forEach(select => {
-    while (select.firstChild) {
-      select.removeChild(select.firstChild);
+    // Handles being called several times to update labels. Preserve values.
+    const values = selectors.map(select => select.value);
+    selectors.forEach(select => {
+        while (select.firstChild) {
+            select.removeChild(select.firstChild);
+        }
+    });
+    for (let i = 0; i !== deviceInfos.length; ++i) {
+        const deviceInfo = deviceInfos[i];
+        const option = document.createElement('option');
+        option.value = deviceInfo.deviceId;
+        if (deviceInfo.kind === 'audioinput') {
+            option.text = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
+            audioInputSelect.appendChild(option);
+        } else if (deviceInfo.kind === 'audiooutput') {
+            option.text = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
+            audioOutputSelect.appendChild(option);
+        } else if (deviceInfo.kind === 'videoinput') {
+            option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
+            videoSelect.appendChild(option);
+        } else {
+            console.log('Some other kind of source/device: ', deviceInfo);
+        }
     }
-  });
-  for (let i = 0; i !== deviceInfos.length; ++i) {
-    const deviceInfo = deviceInfos[i];
-    const option = document.createElement('option');
-    option.value = deviceInfo.deviceId;
-    if (deviceInfo.kind === 'audioinput') {
-      option.text = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
-      audioInputSelect.appendChild(option);
-    } else if (deviceInfo.kind === 'audiooutput') {
-      option.text = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
-      audioOutputSelect.appendChild(option);
-    } else if (deviceInfo.kind === 'videoinput') {
-      option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
-      videoSelect.appendChild(option);
-    } else {
-      console.log('Some other kind of source/device: ', deviceInfo);
-    }
-  }
-  selectors.forEach((select, selectorIndex) => {
-    if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
-      select.value = values[selectorIndex];
-    }
-  });
+    selectors.forEach((select, selectorIndex) => {
+        if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
+            select.value = values[selectorIndex];
+        }
+    });
 }
 
 navigator.mediaDevices.enumerateDevices().then(gotDevices);
 
-function attachSinkId(element, sinkId){
-    if(typeof element.sinkId !== 'undefined') {
+function attachSinkId(element, sinkId) {
+    if (typeof element.sinkId !== 'undefined') {
         element.setSinkId(sinkId)
             .then(() => {
                 console.log(`Success, audio output device attached: ${sinkId}`);
@@ -278,7 +295,7 @@ function attachSinkId(element, sinkId){
     }
 }
 
-function changeAudioDestination(){
+function changeAudioDestination() {
     const audioDestination = audioOutputSelect.value;
     attachSinkId(videoElement, audioDestination);
 }
@@ -307,24 +324,22 @@ function changeAudioDestination(){
 
 
 function switchInputs() {
-    if(localStream){
+    if (localStream) {
         localStream.getTracks(forEach(track => {
             console.log(track)
             track.stop();
         }));
     }
 
-  const audioSource = audioInputSelect.value;
-  const videoSource = videoSelect.value;
-  constraints = {
-    audio: audioSource,
-    video: videoSource
-  };
-  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices);
+    const audioSource = audioInputSelect.value;
+    const videoSource = videoSelect.value;
+    constraints = {
+        audio: audioSource,
+        video: videoSource
+    };
+    navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices);
 }
 
 audioInputSelect.onchange = switchInputs;
 audioOutputSelect.onchange = changeAudioDestination;
 videoSelect.onchange = switchInputs;
-
-
